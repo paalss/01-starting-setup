@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import ExpenseItem from "./ExpenseItem";
 import ExpensesFilter from "./ExpensesFilter";
@@ -6,18 +6,23 @@ import Card from "../UI/Card";
 import "./ViewExpenses.css";
 
 const ViewExpenses = (props) => {
+  const [chosenYear, setChosenYear] = useState("2020");
   const filterChangeHandler = (chosenYear) => {
-    props.onApplyFilterHandler(chosenYear)
+    setChosenYear(chosenYear);
   };
+
+  const filteredExpenses = props.data.filter((element) => {
+    return element.date.getFullYear() === parseInt(chosenYear);
+  });
 
   return (
     <div>
       <Card className="expenses">
         <ExpensesFilter
-          selected={props.year.chosenYear}
+          selected={chosenYear}
           onFilterChange={filterChangeHandler}
         />
-        {props.data.map((element) => {
+        {filteredExpenses.map((element) => {
           return (
             <ExpenseItem
               key={element.id}

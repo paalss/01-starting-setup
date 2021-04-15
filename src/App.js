@@ -32,33 +32,17 @@ const DEFAULTEXPENSES = [
 
 const App = () => {
   const [expenses, setExpences] = useState(DEFAULTEXPENSES);
-  const [chosenYear, setChosenYear] = useState("");
-
-  let possiblyFilteredExpenses = expenses;
 
   const addExpenseHandler = (newExpense) => {
     setExpences((prevExpenses) => {
       return [newExpense, ...prevExpenses];
     });
   };
-  const applyFilterHandler = (chosenYear) => {
-    setChosenYear(chosenYear);
-  };
-  if (chosenYear !== "") {
-    const filteredExpenses = expenses.filter(
-      (element) => element.date.getFullYear() === parseInt(chosenYear)
-    );
-    possiblyFilteredExpenses = filteredExpenses;
-  }
 
   return (
     <div>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <ViewExpenses
-        onApplyFilterHandler={applyFilterHandler}
-        data={possiblyFilteredExpenses}
-        year={chosenYear}
-      />
+      <ViewExpenses data={expenses} />
       <p>this is also visible</p>
     </div>
   );
