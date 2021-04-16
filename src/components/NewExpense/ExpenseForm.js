@@ -6,8 +6,8 @@ const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
-  const [isFormOpen, setIsFormOpen] = useState(true)
-  
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
   };
@@ -30,22 +30,18 @@ const ExpenseForm = (props) => {
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
-    toggleForm()
+    toggleForm();
   };
 
   const toggleForm = () => {
     if (isFormOpen) {
-      setIsFormOpen(false)
+      setIsFormOpen(false);
     } else {
-      setIsFormOpen(true)
+      setIsFormOpen(true);
     }
-  }
+  };
 
   if (isFormOpen) {
-    return (
-      <button onClick={toggleForm}>Add new expense</button>
-    )
-  } else {
     return (
       <form onSubmit={submitHandler}>
         <div className="new-expense__controls">
@@ -79,11 +75,15 @@ const ExpenseForm = (props) => {
           </div>
         </div>
         <div className="new-expense_actions">
-          <button type="button" onClick={toggleForm}>Cancel</button>
+          <button type="button" onClick={toggleForm}>
+            Cancel
+          </button>
           <button type="submit">Add expense</button>
         </div>
       </form>
     );
+  } else {
+    return <button onClick={toggleForm}>Add new expense</button>;
   }
 };
 
