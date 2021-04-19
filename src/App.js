@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import NewExpense from "./components/NewExpense/NewExpense";
 import ViewExpenses from "./components/Expenses/ViewExpenses";
 
-const DEFAULTEXPENSES = [
+const DEFAULT_EXPENSES = [
   {
     id: "e1",
     title: "Toilet Paper",
@@ -31,7 +31,7 @@ const DEFAULTEXPENSES = [
 ];
 
 const App = () => {
-  const [expenses, setExpences] = useState(DEFAULTEXPENSES);
+  const [expenses, setExpences] = useState(DEFAULT_EXPENSES);
 
   const addExpenseHandler = (newExpense) => {
     setExpences((prevExpenses) => {

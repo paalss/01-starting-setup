@@ -6,13 +6,13 @@ import "./ViewExpenses.css";
 import ExpensesChart from "./ExpensesChart";
 import ExpensesList from "./ExpensesList";
 
-const ViewExpenses = (props) => {
+const ViewExpenses = ({ data }) => {
   const [chosenYear, setChosenYear] = useState("2020");
   const filterChangeHandler = (chosenYear) => {
     setChosenYear(chosenYear);
   };
 
-  const filteredExpenses = props.data.filter((element) => {
+  const filteredExpenses = data.filter((element) => {
     return element.date.getFullYear() === parseInt(chosenYear);
   });
 
@@ -23,7 +23,7 @@ const ViewExpenses = (props) => {
           selected={chosenYear}
           onFilterChange={filterChangeHandler}
         />
-        <ExpensesChart expenses={filteredExpenses}/>
+        <ExpensesChart expenses={filteredExpenses} />
         <ExpensesList data={filteredExpenses} />
       </Card>
     </div>
